@@ -1,5 +1,7 @@
-import { addTodo, changeTodo, removeAllTodos } from "./functions";
+import { addTodo, changeTodo, removeAllTodos, sortByName } from "./functions";
 import { Todo } from "./models/Todo";
+
+const sortByNameButton = document.getElementById("sortByName") as HTMLButtonElement | null; 
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
 
@@ -15,11 +17,14 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
     let todoText: string = (
       document.getElementById("newTodoText") as HTMLInputElement
     ).value;
-    console.log("Todos when creating", todos);
 
     createNewTodo(todoText, todos);
   }
 );
+
+sortByNameButton?.addEventListener("click", () => {
+  sortByName(todos);
+});
 
 // Tested
 export function createNewTodo(todoText: string, todos: Todo[]) {
@@ -86,5 +91,5 @@ export function clearTodos(todos: Todo[]) {
   exports.createHtml(todos);
 }
 
-// Uncomment this after testing
+// Uncomment after testing
 // createHtml(todos);
