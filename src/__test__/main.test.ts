@@ -59,6 +59,22 @@ describe("tests for createNewTodo()", () => {
 });
 
 describe("tests for createHtml()", () => {
+
+    test("should send todos to localStorage", () => {
+        //arrange
+        document.body.innerHTML = `<ul id="todos" class="todo"></ul>`;
+        const todos: Todo[] = [
+            { text: "Hello", done: false },
+        ];
+        
+        //act
+        main.createHtml(todos);
+        
+        //assert
+        const todosFromLocalStorage = JSON.parse(localStorage.getItem("todos") as string);
+        expect(todosFromLocalStorage).toEqual(todos);
+        })
+
     test("should create HTML", () => {
         //arrange
         document.body.innerHTML = `<ul id="todos" class="todo"></ul>`;
