@@ -1,6 +1,7 @@
 import { IAddResponse } from "./models/IAddResult";
 import { Todo } from "./models/Todo";
 
+// Tested
 export function addTodo(todoText: string, todos: Todo[]): IAddResponse {
   if (todoText.length > 2) {
     let newTodo = new Todo(todoText, false);
@@ -11,10 +12,13 @@ export function addTodo(todoText: string, todos: Todo[]): IAddResponse {
   }
 }
 
+// Tested
 export function changeTodo(todo: Todo) {
   todo.done = !todo.done;
 }
 
+// Tested
 export function removeAllTodos(todos: Todo[]) {
   todos.splice(0, todos.length);
 }
+

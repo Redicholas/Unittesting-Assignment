@@ -21,17 +21,19 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
   }
 );
 
-function createNewTodo(todoText: string, todos: Todo[]) {
+// Tested
+export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
 
   if (result.success) {
-    createHtml(todos);
+    exports.createHtml(todos);
   } else {
-    displayError(result.error, true);
+    exports.displayError(result.error, true);
   }
 }
 
-function createHtml(todos: Todo[]) {
+// Tested
+export function createHtml(todos: Todo[]) {
   localStorage.setItem("todos", JSON.stringify(todos));
 
   let todosContainer: HTMLUListElement = document.getElementById(
@@ -50,19 +52,21 @@ function createHtml(todos: Todo[]) {
     li.classList.add("todo__text");
     li.innerHTML = todos[i].text;
     li.addEventListener("click", () => {
-      toggleTodo(todos[i]);
+      exports.toggleTodo(todos[i]);
     });
 
     todosContainer.appendChild(li);
   }
 }
 
-function toggleTodo(todo: Todo) {
+// Tested
+export function toggleTodo(todo: Todo) {
   changeTodo(todo);
-  createHtml(todos);
+  exports.createHtml(todos);
 }
 
-function displayError(error: string, show: boolean) {
+// Tested
+export function displayError(error: string, show: boolean) {
   let errorContainer: HTMLDivElement = document.getElementById(
     "error"
   ) as HTMLDivElement;
@@ -76,9 +80,11 @@ function displayError(error: string, show: boolean) {
   }
 }
 
-function clearTodos(todos: Todo[]) {
+// Tested
+export function clearTodos(todos: Todo[]) {
   removeAllTodos(todos);
-  createHtml(todos);
+  exports.createHtml(todos);
 }
 
-createHtml(todos);
+// Uncomment this after testing
+// createHtml(todos);
